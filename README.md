@@ -97,9 +97,7 @@ compression             # compacts body responses
 jest                    # testing library
 ```
 
-## Extras
-
-Tudo isto encontra-se na root do projeto
+## More
 
 ```bash
 babel.config.js        # Babel config
