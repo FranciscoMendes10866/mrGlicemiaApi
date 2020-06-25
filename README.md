@@ -80,8 +80,7 @@ npm run test # or yarn test
 express                 # Javascript Framework
 body-parser             # body parser
 cors                    # cors middleware protection
-passport                # autorization middleware
-passport-jwt            # authentication strategy middleware
+jsonwebtoken            # auth jwt middleware
 bcrypt                  # encryption dependency
 pg                      # Postgresql client for node.js
 @prisma/cli             # database toolkit cli
