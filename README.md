@@ -77,23 +77,25 @@ npm run test # or yarn test
 ## Used dependencies
 
 ```bash
-express                 # Javascript Framework
-body-parser             # body parser
-cors                    # cors middleware protection
-jsonwebtoken            # auth jwt middleware
-bcrypt                  # encryption dependency
-pg                      # Postgresql client for node.js
-@prisma/cli             # database toolkit cli
-@prisma/client          # database toolkit functionalities
-dotenv                  # env vars
-eslint                  # code patterns checker
-morgan                  # http logger
-ts-node-dev             # daemon process manager
-joiful                  # data-types validator
-babel                   # compiler
-helmet                  # http headers protection
-compression             # compacts body responses
-jest                    # testing library
+express                          # Javascript Framework
+body-parser                      # body parser
+cors                             # cors middleware protection
+jsonwebtoken                     # auth jwt middleware
+bcrypt                           # encryption dependency
+pg                               # Postgresql client for node.js
+@prisma/cli                      # database toolkit cli
+@prisma/client                   # database toolkit functionalities
+dotenv                           # env vars
+eslint                           # code patterns checker
+morgan                           # http logger
+ts-node-dev                      # daemon process manager
+joiful                           # data-types validator
+babel                            # compiler
+helmet                           # http headers protection
+compression                      # compacts body responses
+jest                             # testing library
+cloudinary                       # service to store the images
+multer-storage-cloudinary        # multer storage engine for Cloudinary
 ```
 
 ## More
