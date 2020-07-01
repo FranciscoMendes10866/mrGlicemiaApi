@@ -74,7 +74,7 @@ Jest test cmd
 npm run test # or yarn test
 ```
 
-## Used dependencies
+## Dependencies Used
 
 ```bash
 express                          # Javascript Framework
@@ -94,6 +94,7 @@ babel                            # compiler
 helmet                           # http headers protection
 compression                      # compacts body responses
 jest                             # testing library
+multer                           # file parser
 cloudinary                       # service to store the images
 multer-storage-cloudinary        # multer storage engine for Cloudinary
 ```
