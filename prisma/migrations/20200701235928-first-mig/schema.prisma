@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://root:root@localhost:5050/glicemiaDB"
+  url = "***"
 }
 
 generator client {
