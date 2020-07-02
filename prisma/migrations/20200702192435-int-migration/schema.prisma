@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://root:root@localhost:5050/glicemiaDB"
+  url = "***"
 }
 
 generator client {
@@ -15,11 +15,11 @@ generator client {
 model Records {
   id         Int      @default(autoincrement()) @id
   createdAt  DateTime @default(now())
-  insulin    String
-  glucose    String
+  insulin    Int
+  glucose    Int
   dateTime   String
   medication Boolean
-  User       User     @relation(fields: [userId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
   userId     Int      // 🚨🚓
 }
 

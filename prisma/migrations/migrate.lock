@@ -1,3 +1,6 @@
 # Prisma Migrate lockfile v1
 
 20200701235928-first-mig
+20200702192435-int-migration
+20200702192754-move-back
+20200702193134-name-conv
