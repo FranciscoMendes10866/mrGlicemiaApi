@@ -7,7 +7,6 @@ const prisma = new PrismaClient()
 // Register controller
 const register = async (req, res) => {
   const { email, password } = req.body
-
   const emailExist = await prisma.user.findOne({
     where: {
       email: email
@@ -15,20 +14,16 @@ const register = async (req, res) => {
   })
 
   if (emailExist) {
-    return res.status(400).json({
-      msg: 'Email already taken'
-    })
+    return res.sendStatus(400)
   } else {
     const Salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(password, Salt)
-
     const newUser = await prisma.user.create({
       data: {
         email: email,
         password: hashedPassword
       }
     })
-
     return res.send(newUser)
   }
 }
@@ -36,7 +31,6 @@ const register = async (req, res) => {
 // Login controller
 const login = async (req, res) => {
   const { email, password } = req.body
-
   const validEmail = await prisma.user.findOne({
     where: {
       email: email
@@ -44,23 +38,16 @@ const login = async (req, res) => {
   })
 
   if (!validEmail) {
-    return res.status(400).json({
-      msg: 'Email doesn\'t exists'
-    })
+    return res.sendStatus(404)
   }
 
   const validPassword = await bcrypt.compare(password, validEmail.password)
-
   if (!validPassword) {
-    return res.status(400).json({
-      msg: 'Password doesn\' match'
-    })
+    return res.sendStatus(400)
   } else {
-    jwt.sign({ user: validEmail }, process.env.JWT_PRIVATE_KEY, { expiresIn: '7d' }, (err, token) => {
+    jwt.sign({ user: validEmail }, process.env.JWT_PRIVATE_KEY, (err, token) => {
       if (err) {
-        return res.status(400).json({
-          msg: 'Error generating token'
-        })
+        return res.sendStatus(400)
       } else {
         return res.json({
           token: token

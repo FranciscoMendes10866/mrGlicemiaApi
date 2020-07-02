@@ -19,29 +19,19 @@ const newRecordVal = async (req, res, next) => {
   if (error) {
     switch (error.details[0].context.key) {
       case 'insulin':
-        res.status(400).send({
-          error: 'Insulin not valid.'
-        })
+        res.sendStatus(400)
         break
       case 'glucose':
-        res.status(400).send({
-          error: 'Glucose not valid.'
-        })
+        res.sendStatus(400)
         break
       case 'dateTime':
-        res.status(400).send({
-          error: 'Date not valid.'
-        })
+        res.sendStatus(400)
         break
       case 'medication':
-        res.status(400).send({
-          error: 'Medication not valid.'
-        })
+        res.sendStatus(400)
         break
       default:
-        res.status(400).send({
-          error: 'Form not valid.'
-        })
+        res.sendStatus(400)
         break
     }
   } else {
@@ -64,29 +54,19 @@ const updateRecordVal = async (req, res, next) => {
   if (error) {
     switch (error.details[0].context.key) {
       case 'insulin':
-        res.status(400).send({
-          error: 'Insulin not valid.'
-        })
+        res.sendStatus(400)
         break
       case 'glucose':
-        res.status(400).send({
-          error: 'Glucose not valid.'
-        })
+        res.sendStatus(400)
         break
       case 'dateTime':
-        res.status(400).send({
-          error: 'Date not valid.'
-        })
+        res.sendStatus(400)
         break
       case 'medication':
-        res.status(400).send({
-          error: 'Medication not valid.'
-        })
+        res.sendStatus(400)
         break
       default:
-        res.status(400).send({
-          error: 'Form not valid.'
-        })
+        res.sendStatus(400)
         break
     }
   } else {

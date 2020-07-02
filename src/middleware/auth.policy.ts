@@ -17,19 +17,13 @@ const authValidation = async (req, res, next) => {
   if (error) {
     switch (error.details[0].context.key) {
       case 'email':
-        res.status(400).send({
-          error: 'Email not valid.'
-        })
+        res.sendStatus(400)
         break
       case 'password':
-        res.status(400).send({
-          error: 'Password not valid.'
-        })
+        res.sendStatus(400)
         break
       default:
-        res.status(400).send({
-          error: 'Form not valid.'
-        })
+        res.sendStatus(400)
         break
     }
   } else {
