@@ -37,6 +37,4 @@ const authValidation = async (req, res, next) => {
   }
 }
 
-export {
-  authValidation
-}
+export default authValidation
