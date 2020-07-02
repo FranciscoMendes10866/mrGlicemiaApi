@@ -10,7 +10,7 @@ const createRecord = (req, res) => {
       return res.sendStatus(403)
     } else {
       const { insulin, glucose, dateTime, medication } = req.body
-      const newRecord = await prisma.records.create({
+      await prisma.records.create({
         data: {
           insulin: insulin,
           glucose: glucose,
@@ -19,7 +19,7 @@ const createRecord = (req, res) => {
           User: { connect: { id: cred.user.id } }
         }
       })
-      return res.json(newRecord)
+      return res.sendStatus(201)
     }
   })
 }
