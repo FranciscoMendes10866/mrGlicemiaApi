@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken'
 
 const prisma = new PrismaClient()
 
+// Creates a new record
 const createRecord = (req, res) => {
   jwt.verify(req.token, process.env.JWT_PRIVATE_KEY, async (err, cred) => {
     if (err) {
@@ -18,7 +19,7 @@ const createRecord = (req, res) => {
           glucose: glucose,
           dateTime: dateTime,
           medication: medication,
-          user: { connect: { id: cred.user.id } }
+          User: { connect: { id: cred.user.id } }
         }
       })
       return res.json(newRecord)
@@ -26,6 +27,25 @@ const createRecord = (req, res) => {
   })
 }
 
+// Gets all records that belongs to a certain user
+const getRecords = (req, res) => {
+  jwt.verify(req.token, process.env.JWT_PRIVATE_KEY, async (err, cred) => {
+    if (err) {
+      return res.status(400).json({
+        msg: 'You don\'t have permissions.'
+      })
+    } else {
+      const getRecords = await prisma.records.findMany({
+        where: {
+          userId: cred.user.id
+        }
+      })
+      return res.json(getRecords)
+    }
+  })
+}
+
 export {
-  createRecord
+  createRecord,
+  getRecords
 }
