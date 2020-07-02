@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client'
-
 import jwt from 'jsonwebtoken'
 
 const prisma = new PrismaClient()
@@ -8,9 +7,7 @@ const prisma = new PrismaClient()
 const createRecord = (req, res) => {
   jwt.verify(req.token, process.env.JWT_PRIVATE_KEY, async (err, cred) => {
     if (err) {
-      return res.status(400).json({
-        msg: 'You don\'t have permissions.'
-      })
+      return res.sendStatus(403)
     } else {
       const { insulin, glucose, dateTime, medication } = req.body
       const newRecord = await prisma.records.create({
@@ -31,9 +28,7 @@ const createRecord = (req, res) => {
 const getRecords = (req, res) => {
   jwt.verify(req.token, process.env.JWT_PRIVATE_KEY, async (err, cred) => {
     if (err) {
-      return res.status(400).json({
-        msg: 'You don\'t have permissions.'
-      })
+      return res.sendStatus(403)
     } else {
       const getRecords = await prisma.records.findMany({
         where: {
@@ -45,7 +40,46 @@ const getRecords = (req, res) => {
   })
 }
 
+// Deletes a given record
+const deleteRecords = (req, res) => {
+  jwt.verify(req.token, process.env.JWT_PRIVATE_KEY, async (err) => {
+    if (err) {
+      return res.sendStatus(403)
+    } else {
+      const { id } = req.params
+      await prisma.records.delete({
+        where: {
+          id: Number(id)
+        }
+      })
+      return res.sendStatus(200)
+    }
+  })
+}
+
+// updates a given record
+const updateRecords = (req, res) => {
+  jwt.verify(req.token, process.env.JWT_PRIVATE_KEY, async (err) => {
+    if (err) {
+      return res.sendStatus(403)
+    } else {
+      const { id } = req.params
+      const updateRecord = await prisma.records.update({
+        where: {
+          id: Number(id)
+        },
+        data: {
+          ...req.body
+        }
+      })
+      return res.json(updateRecord)
+    }
+  })
+}
+
 export {
   createRecord,
-  getRecords
+  getRecords,
+  deleteRecords,
+  updateRecords
 }

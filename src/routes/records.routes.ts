@@ -1,14 +1,18 @@
 import { Router } from 'express'
 
 import authGuard from '../guard/token.guard'
-import recordsValidation from '../middleware/records.policy'
+import { newRecordVal, updateRecordVal } from '../middleware/records.policy'
 
-import { createRecord, getRecords } from '../controllers/records.controller'
+import { createRecord, getRecords, deleteRecords, updateRecords } from '../controllers/records.controller'
 
 const router = Router()
 
-router.post('/', authGuard, recordsValidation, createRecord)
+router.post('/', authGuard, newRecordVal, createRecord)
 
 router.get('/', authGuard, getRecords)
+
+router.delete('/:id', authGuard, deleteRecords)
+
+router.patch('/:id', authGuard, updateRecordVal, updateRecords)
 
 export default router
