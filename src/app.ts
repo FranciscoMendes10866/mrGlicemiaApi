@@ -6,6 +6,7 @@ import morgan from 'morgan'
 import compression from 'compression'
 
 import authRoutes from './routes/auth.routes'
+import recordsRoutes from './routes/records.routes'
 
 const app = express()
 
@@ -16,5 +17,6 @@ app.use(helmet())
 app.use(morgan('dev'))
 app.use(compression())
 app.use('/api/v1/auth', authRoutes)
+app.use('/api/v1/records', recordsRoutes)
 
 export default app

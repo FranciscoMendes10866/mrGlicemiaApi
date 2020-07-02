@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 const prisma = new PrismaClient()
 
@@ -55,7 +56,17 @@ const login = async (req, res) => {
       msg: 'Password doesn\' match'
     })
   } else {
-    return res.send(validEmail)
+    jwt.sign({ user: validEmail }, process.env.JWT_PRIVATE_KEY, { expiresIn: '7d' }, (err, token) => {
+      if (err) {
+        return res.status(400).json({
+          msg: 'Error generating token'
+        })
+      } else {
+        return res.json({
+          token: token
+        })
+      }
+    })
   }
 }
 
