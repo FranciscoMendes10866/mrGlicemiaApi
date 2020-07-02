@@ -89,7 +89,7 @@ dotenv                           # env vars
 eslint                           # code patterns checker
 morgan                           # http logger
 ts-node-dev                      # daemon process manager
-joiful                           # data-types validator
+@hapi/joi                        # data validation
 babel                            # compiler
 helmet                           # http headers protection
 compression                      # compacts body responses

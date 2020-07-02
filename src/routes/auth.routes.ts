@@ -2,10 +2,12 @@ import { Router } from 'express'
 
 import { register, login } from '../controllers/auth.controller'
 
+import { authValidation } from '../middleware/auth.policy'
+
 const router = Router()
 
-router.get('/register', register)
+router.post('/register', authValidation, register)
 
-router.get('/login', login)
+router.post('/login', authValidation, login)
 
 export default router
