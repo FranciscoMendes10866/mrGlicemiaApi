@@ -57,7 +57,30 @@ const login = async (req, res) => {
   }
 }
 
+// updates the user password
+const updatePassword = (req, res) => {
+  jwt.verify(req.token, process.env.JWT_PRIVATE_KEY, async (err, cred) => {
+    if (err) {
+      return res.sendStatus(403)
+    } else {
+      const { password } = req.body
+      const Salt = await bcrypt.genSalt(10)
+      const hashedPassword = await bcrypt.hash(password, Salt)
+      const updatePicture = await prisma.user.update({
+        where: {
+          id: cred.user.id
+        },
+        data: {
+          password: hashedPassword
+        }
+      })
+      return res.json(updatePicture)
+    }
+  })
+}
+
 export {
   register,
-  login
+  login,
+  updatePassword
 }
