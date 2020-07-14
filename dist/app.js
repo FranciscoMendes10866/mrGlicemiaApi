@@ -26,11 +26,16 @@ var _profile = _interopRequireDefault(require("./routes/profile.routes"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const app = (0, _express.default)();
+const corsOptions = {
+  origin: process.env.FRONT_END_URL,
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+
+};
 app.use((0, _bodyParser.json)());
 app.use((0, _bodyParser.urlencoded)({
   extended: false
 }));
-app.use((0, _cors.default)());
+app.use((0, _cors.default)(corsOptions));
 app.use((0, _helmet.default)());
 app.use((0, _morgan.default)('dev'));
 app.use((0, _compression.default)());
