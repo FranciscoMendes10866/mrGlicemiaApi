@@ -10,14 +10,10 @@ import recordsRoutes from './routes/records.routes'
 import profileRoutes from './routes/profile.routes'
 
 const app = express()
-const corsOptions = {
-    origin: process.env.FRONT_END_URL,
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
 
 app.use(json())
 app.use(urlencoded({ extended: false }))
-app.use(cors(corsOptions))
+app.use(cors())
 app.use(helmet())
 app.use(morgan('dev'))
 app.use(compression())
