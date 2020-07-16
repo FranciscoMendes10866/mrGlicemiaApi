@@ -16,7 +16,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const storage = new _multerStorageCloudinary.CloudinaryStorage({
   cloudinary: _cloudinary.default,
   params: {
-    folder: 'glicemiaPics'
+    folder: process.env.CLOUD_FOLDER
   }
 });
 const parser = (0, _multer.default)({

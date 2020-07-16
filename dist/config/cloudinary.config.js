@@ -10,9 +10,9 @@ var _index = _interopRequireDefault(require("cloudinary/lib/v2/index"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _index.default.config({
-  cloud_name: 'dj5iihhqv',
-  api_key: '454969593736623',
-  api_secret: '993YYJkYw7wA-PEz9ZFvqPOplIo'
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET
 });
 
 var _default = _index.default;
