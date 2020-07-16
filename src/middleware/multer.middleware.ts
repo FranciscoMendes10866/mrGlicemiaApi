@@ -6,7 +6,7 @@ import cloudinaryConfig from '../config/cloudinary.config'
 const storage = new CloudinaryStorage({
   cloudinary: cloudinaryConfig,
   params: {
-    folder: 'glicemiaPics'
+    folder: process.env.CLOUD_FOLDER
   }
 })
 
